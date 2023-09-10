@@ -92,7 +92,54 @@ type Job = {
   projects: Project[];
 };
 
-const jobs: Job[] = [];
+const jobs: Job[] = [
+  {
+    company: 'MXN Technology',
+    title: 'Software Engineer',
+    dateRange: 'Sep 2021 - Present',
+    description:
+      'Engineer on an R&D focused team, testing out technologies and projects new to the company. Lead effort to automate build pipelines; both within my direct team and helping other development teams. Worked with team to design and harden development practices towards a process that encouraged full participation of team members.',
+    skills: [
+      'JavaScript',
+      'TypeScript',
+      'Node.js',
+      'Vue',
+      'Quasar',
+      'Flutter / Dart',
+      'Google Cloud',
+      'PHP',
+      'Laravel',
+    ],
+    projects: [
+      {
+        title: 'Proveneer',
+        description:
+          'Mobile app (built with Flutter) and webapp (built with Vue), with a Node.js server, for art galleries and collectors to track provenance of artworks.',
+        skills: [
+          'JavaScript',
+          'TypeScript',
+          'Node.js',
+          'Vue',
+          'Quasar',
+          'Flutter / Dart',
+          'Google Cloud',
+        ],
+      },
+      {
+        title: 'Mintcode',
+        description:
+          'Mobile app (built with Flutter) with a Node.js server, for proving ownership history of collectibles.',
+        skills: [
+          'JavaScript',
+          'TypeScript',
+          'Node.js',
+          'Flutter / Dart',
+          'Google Cloud',
+        ],
+      },
+    ],
+  },
+];
 
 for (let i = 0; i < 5; i++) {
   const newJob: Job = {
