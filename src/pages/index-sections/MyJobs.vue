@@ -75,11 +75,17 @@ import { faker } from '@faker-js/faker';
 
 import ExpandableArea from 'components/ExpandableArea.vue';
 
+type ExternalLink = {
+  text: string;
+  url: string;
+};
+
 type Project = {
   title: string;
   description: string;
   imageUrl?: string;
   skills: string[];
+  externalLinks?: ExternalLink[];
 };
 
 type Job = {
@@ -98,9 +104,8 @@ const jobs: Job[] = [
     title: 'Software Engineer',
     dateRange: 'Sep 2021 - Present',
     description:
-      'Engineer on an R&D focused team, testing out technologies and projects new to the company. Lead effort to automate build pipelines; both within my direct team and helping other development teams. Worked with team to design and harden development practices towards a process that encouraged full participation of team members.',
+      'Seoul, South Korea. MXN is an international logistics company, and I am an engineer on an R&D focused team, testing out technologies and projects new to the company. Lead effort to automate build pipelines; both within my direct team and helping other development teams. Worked with team to design and harden development practices towards a process that encouraged full participation of team members.',
     skills: [
-      'JavaScript',
       'TypeScript',
       'Node.js',
       'Vue',
@@ -128,13 +133,72 @@ const jobs: Job[] = [
       {
         title: 'Mintcode',
         description:
-          'Mobile app (built with Flutter) with a Node.js server, for proving ownership history of collectibles.',
+          'Mobile app (built with Flutter) with a Node.js server, for proving ownership history of collectibles. First time working with Flutter and Dart.',
         skills: [
           'JavaScript',
           'TypeScript',
           'Node.js',
           'Flutter / Dart',
           'Google Cloud',
+        ],
+      },
+      {
+        title: 'Warehouse Management System for an individual vendor',
+        description:
+          'Inventory management webapp specifically made for a client company. Upgraded an existing webapp to Laravel 10 and PHP 8.2, rewriting and adding type-safety to much of it in the process. First time working in PHP.',
+        skills: ['PHP', 'Laravel', 'JavaScript', 'TypeScript', 'HTML'],
+      },
+      {
+        title: 'Mintfulfillment Warehouse Management System',
+        description:
+          'Warehouse management webapp and server. Designed from the ground up. Workers can manage warehouse inventory and fulfill orders.',
+        skills: ['TypeScript', 'Node.js', 'Vue', 'Quasar', 'Capacitor'],
+      },
+      {
+        title: 'Mintfulfillment Order Management System',
+        description:
+          'Order management webapp and server. Connects with Shopify, Naver SmartStore, and Coupang to import orders, which can then be sent to a WMS to fulfill. Worked through upgrade from Vue 2 to Vue 3, and later conversion from JS to TypeScript.',
+        skills: ['JavaScript', 'TypeScript', 'Node.js', 'Vue', 'Quasar'],
+      },
+    ],
+  },
+  {
+    company: 'athenahealth',
+    title: 'Senior Software Engineer',
+    dateRange: 'Aug 2017 - Jun 2021',
+    description:
+      'Watertown, MA, USA. athenahealth creates an Electronic Medical Record (EMR) product, and I was on their Integration Services, and later, Clinicals teams. Our team built and maintained several RESTful microservices serving over 6 million requests per day. I was the subject matter expert on these services, and helped DevOps teams establish AWS best practices for the Clinicals engineering org, as well as the company at large. For some of this period I was the scrum master for a team spread across multiple timezones, and we still maintained productivity after switching to remote work with the outbreak of COVID.',
+    skills: [
+      'JavaScript',
+      'AWS',
+      'TypeScript',
+      'Node.js',
+      'Perl',
+      'HTML / CSS',
+    ],
+    projects: [
+      {
+        title: 'NewSCRIPT',
+        description:
+          "Our team managed the upgrade to e-prescibing vendor Surescripts's new standard. This was a major change, rewriting much of our electronic prescription code, eliminating many dreaded bug factories along the way. This upgrade won athenahealth an award from Surescripts as one of the top ten companies in their network for prescription accuracy.",
+        skills: ['JavaScript', 'Perl'],
+        externalLinks: [
+          {
+            url: 'https://www.athenahealth.com/news/awards/athenahealth-wins-highest-accuracy-score-e-prescribing-quality-2020-surescripts-white-coat-award',
+            text: 'athenahealth wins highest accuracy score in e-prescribing quality in 2020 Surescripts White Coat Award',
+          },
+        ],
+      },
+      {
+        title: 'Prescription Drug Monitoring Program',
+        description:
+          "Connects with state prescription monitoring programs to enable doctors to view patients' controlled drug history (required by law in most states) without leaving the prescription workflow. Before this, they had to go through the states' sites individually, taking 5-7 minutes, while our process took less than 10 seconds. The Node.js microservice supporting this took in millions of requests per day and scaled stably. I often interacted directly with vendors and developers on the states' systems as part of this project.",
+        skills: ['JavaScript', 'TypeScript', 'Node.js', 'Perl', 'AWS'],
+        externalLinks: [
+          {
+            url: 'https://www.athenahealth.com/knowledge-hub/clinical-trends/3-minute-case-study-smart-seamless-opioid-prescribing',
+            text: '3-minute case study: Smart, seamless opioid prescribing',
+          },
         ],
       },
     ],
