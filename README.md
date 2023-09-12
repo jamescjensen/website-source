@@ -1,4 +1,4 @@
-# Jack's Website (bug-free-couscous)
+# James Jensen's Website
 
 A Quasar Project
 
