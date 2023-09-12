@@ -1,15 +1,13 @@
 <template>
-  <expandable-area icon-size="20px">
+  <expandable-area icon-size="18px">
     <template #title>
-      <span class="text-title"> My Skills </span>
+      <span class="text-title-subsection"> Skills </span>
     </template>
     <div class="row q-col-gutter-sm">
-      <expandable-area class="col-12" icon-size="18px">
-        <template #title>
-          <span class="text-title-subsection">
-            {{ '>=5 Years' }}
-          </span>
-        </template>
+      <div class="col-12">
+        <div class="text-title-subsubsection">
+          {{ '>=5 Years' }}
+        </div>
         <div class="row q-col-gutter-sm">
           <template v-for="skill in fiveYearSkills" :key="skill">
             <div class="col-auto">
@@ -17,13 +15,11 @@
             </div>
           </template>
         </div>
-      </expandable-area>
-      <expandable-area class="col-12" icon-size="18px">
-        <template #title>
-          <span class="text-title-subsection">
-            {{ '2~5 Years' }}
-          </span>
-        </template>
+      </div>
+      <div class="col-12">
+        <div class="text-title-subsubsection">
+          {{ '2~5 Years' }}
+        </div>
         <div class="row q-col-gutter-sm">
           <template v-for="skill in twoYearSkills" :key="skill">
             <div class="col-auto">
@@ -31,11 +27,9 @@
             </div>
           </template>
         </div>
-      </expandable-area>
-      <expandable-area class="col-12" icon-size="18px">
-        <template #title>
-          <span class="text-title-subsection"> {{ '<2 Years' }} </span>
-        </template>
+      </div>
+      <div class="col-12">
+        <div class="text-title-subsubsection">{{ '<2 Years' }}</div>
         <div class="row q-col-gutter-sm">
           <template v-for="skill in someExperienceSkills" :key="skill">
             <div class="col-auto">
@@ -43,7 +37,7 @@
             </div>
           </template>
         </div>
-      </expandable-area>
+      </div>
     </div>
   </expandable-area>
 </template>
@@ -71,5 +65,6 @@ const someExperienceSkills = [
   'Capacitor',
   'PHP',
   'Laravel',
+  'Qt',
 ];
 </script>

@@ -9,7 +9,6 @@
         <q-icon
           :size="iconSize"
           :name="expanded ? 'expand_more' : 'chevron_right'"
-          color="black"
         />
       </span>
     </div>

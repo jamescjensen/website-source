@@ -1,11 +1,12 @@
 <template>
   <q-page class="column items-center q-pa-md">
     <div ref="containerDiv" :style="containerStyle">
-      <div class="row items-baseline full-width q-col-gutter-md">
-        <div class="col-12">
-          <my-skills class="q-pb-md" id="skill-section" />
-          <my-jobs class="q-pb-md" id="job-section" />
-        </div>
+      <div class="full-width">
+        <introduction-section id="introduction-section" />
+        <q-separator color="primary" class="full-width q-my-md" />
+        <job-section id="job-section" />
+        <q-separator color="primary" class="full-width q-my-md" />
+        <education-section class="q-pb-md" id="education-section" />
       </div>
     </div>
 
@@ -18,7 +19,7 @@
         dense
         fab
         :icon="useFullWidth ? 'width_full' : 'width_normal'"
-        color="accent"
+        color="primary"
         @click="toggleFullWidth"
       />
     </q-page-sticky>
@@ -29,8 +30,9 @@
 import { useQuasar } from 'quasar';
 import { HTMLAttributes, computed, ref } from 'vue';
 
-import MySkills from './index-sections/MySkills.vue';
-import MyJobs from './index-sections/MyJobs.vue';
+import EducationSection from './index-sections/EducationSection.vue';
+import IntroductionSection from './index-sections/IntroductionSection.vue';
+import JobSection from './index-sections/JobSection.vue';
 
 const $q = useQuasar();
 
