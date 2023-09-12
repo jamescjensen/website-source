@@ -3,8 +3,8 @@
     <template #title>
       <span class="text-title"> Introduction </span>
     </template>
-    <div class="row q-col-gutter-sm justify-between">
-      <div class="col-9">
+    <div class="row q-col-gutter-sm items-center justify-between">
+      <div class="col-xs-12 col-sm-9">
         My name is James Jensen (nickname Jack) and I am a software engineer
         with 7 years of professional experience, living in Seoul, South Korea.
         I've done front-end engineering, back-end engineering, embedded
@@ -16,12 +16,9 @@
         <skill-sub-section />
       </div>
 
-      <q-img
-        class="col-3 image-container"
-        fit="cover"
-        no-spinner
-        src="~assets/me.jpeg"
-      />
+      <div class="col-xs-12 col-sm-3 row justify-center">
+        <q-img class="image" fit="cover" no-spinner src="~assets/me.jpeg" />
+      </div>
     </div>
   </expandable-area>
 </template>
@@ -32,7 +29,7 @@ import ExpandableArea from 'components/ExpandableArea.vue';
 </script>
 
 <style scoped lang="scss">
-.image-container {
+.image {
   border-radius: 100px;
   flex-shrink: 0;
   max-height: 300px;

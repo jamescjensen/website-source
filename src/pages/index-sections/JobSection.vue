@@ -39,7 +39,7 @@
                     v-for="project in job.projects"
                     :key="project.title"
                   >
-                    <div class="col-xs-6 col-sm-4">
+                    <div class="col-xs-12 col-sm-4">
                       <project-card :project="project" />
                     </div>
                   </template>
