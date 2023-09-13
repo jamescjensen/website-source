@@ -3,9 +3,9 @@
     <div ref="containerDiv" :style="containerStyle">
       <div class="full-width">
         <introduction-section id="introduction-section" />
-        <q-separator color="primary" class="full-width q-my-md" />
+        <q-separator color="accent" class="full-width q-my-md" />
         <job-section id="job-section" />
-        <q-separator color="primary" class="full-width q-my-md" />
+        <q-separator color="accent" class="full-width q-my-md" />
         <education-section class="q-pb-md" id="education-section" />
       </div>
     </div>
@@ -19,7 +19,7 @@
         dense
         fab
         :icon="useFullWidth ? 'width_full' : 'width_normal'"
-        color="primary"
+        color="accent"
         @click="toggleFullWidth"
       />
     </q-page-sticky>

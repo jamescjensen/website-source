@@ -31,6 +31,7 @@
         <a class="col-auto" href="mailto:jcjens94@gmail.com">
           jcjens94@gmail.com
         </a>
+        <a class="col-auto" href="resume.pdf" target="_blank"> Resume </a>
         <a
           class="col-auto"
           href="https://github.com/jamescjensen/website-source"

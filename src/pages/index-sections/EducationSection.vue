@@ -10,7 +10,9 @@
             University of St. Thomas
           </span>
 
-          <span class="text-subtitle-subsection q-pr-sm"> 3.6 / 4.0 </span>
+          <span class="text-subtitle-subsection q-pr-sm">
+            3.6 / 4.0 (major)
+          </span>
 
           <span class="text-subtitle-subsection">
             B.A. in Computer and Information Sciences, minor in Statistics.

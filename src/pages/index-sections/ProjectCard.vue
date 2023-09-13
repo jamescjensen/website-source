@@ -1,5 +1,5 @@
 <template>
-  <q-card>
+  <q-card class="q-mt-sm">
     <q-card-section>
       <div class="text-title-subsubsection">
         {{ project.title }}

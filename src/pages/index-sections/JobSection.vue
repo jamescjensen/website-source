@@ -115,7 +115,7 @@ const jobs: Job[] = [
         ],
         externalLinks: [
           {
-            url: 'mintcode.xyz',
+            url: 'https://mintcode.xyz',
             text: 'Mintcode website',
           },
         ],
