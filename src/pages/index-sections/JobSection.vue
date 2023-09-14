@@ -206,12 +206,7 @@ const jobs: Job[] = [
         description:
           'I was the sole developer on a plugin for the Unity 3D engine, retrieving data from the tracker to, for example, move the camera in-engine. This also involved building a demo that was showcased at several conferences and visiting one client site to help them test the tracker.',
         skills: ['C#', 'Unity'],
-        externalLinks: [
-          {
-            url: 'https://www.athenahealth.com/news/awards/athenahealth-wins-highest-accuracy-score-e-prescribing-quality-2020-surescripts-white-coat-award',
-            text: 'athenahealth wins highest accuracy score in e-prescribing quality in 2020 Surescripts White Coat Award',
-          },
-        ],
+        externalLinks: [],
       },
       {
         title: 'Tracker SDK',
