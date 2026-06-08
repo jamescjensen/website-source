@@ -6,10 +6,10 @@
     <div class="row q-col-gutter-sm">
       <div class="col-12">
         <div class="text-title-subsubsection">
-          {{ '>=5 Years' }}
+          {{ 'Recent' }}
         </div>
         <div class="row q-col-gutter-sm">
-          <template v-for="skill in fiveYearSkills" :key="skill">
+          <template v-for="skill in recentSkills" :key="skill">
             <div class="col-auto">
               <q-chip class="skill-chip" dense :label="skill" />
             </div>
@@ -18,20 +18,10 @@
       </div>
       <div class="col-12">
         <div class="text-title-subsubsection">
-          {{ '2~5 Years' }}
+          {{ 'Previously Used' }}
         </div>
         <div class="row q-col-gutter-sm">
-          <template v-for="skill in twoYearSkills" :key="skill">
-            <div class="col-auto">
-              <q-chip class="skill-chip" dense :label="skill" />
-            </div>
-          </template>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="text-title-subsubsection">{{ '<2 Years' }}</div>
-        <div class="row q-col-gutter-sm">
-          <template v-for="skill in someExperienceSkills" :key="skill">
+          <template v-for="skill in previouslyUsed" :key="skill">
             <div class="col-auto">
               <q-chip class="skill-chip" dense :label="skill" />
             </div>
@@ -45,18 +35,26 @@
 <script setup lang="ts">
 import ExpandableArea from 'components/ExpandableArea.vue';
 
-const fiveYearSkills = [
+const recentSkills = [
+  'Go',
+  'AWS',
+  'Kubernetes',
+  'Protobuf',
+  'Postgres',
+  'TimescaleDB',
   'JavaScript',
   'TypeScript',
   'Node.js',
-  'AWS',
-  'HTML',
-  'CSS',
 ];
 
-const twoYearSkills = ['Google Cloud', 'Quasar', 'Vue', 'React', 'Perl'];
-
-const someExperienceSkills = [
+const previouslyUsed = [
+  'HTML',
+  'CSS',
+  'Google Cloud',
+  'Quasar',
+  'Vue',
+  'React',
+  'Perl',
   'C',
   'C++',
   'C#',

@@ -5,14 +5,12 @@
     </template>
     <div class="row q-col-gutter-sm items-center justify-between">
       <div class="col-xs-12 col-sm-9">
-        My name is James Jensen (nickname Jack), and I am a software engineer
-        with 7 years of professional experience, living in Seoul, South Korea.
-        I've done front-end engineering, back-end engineering, embedded
-        engineering, server architecture.. and I'm always happy to try more. I'm
-        most familiar with Node.js, but every job I've had has involved learning
-        a new programming language on the spot, and again, always happy to try
-        more.
-
+        Developer with ten years of professional experience building
+        cloud-native applications, distributed systems, and e-commerce
+        platforms; delivering high-scale services on AWS and GCP. Experienced
+        leading cross-functional teams through architecture design, roadmap
+        planning, and delivery. Specialized in Go, Node.js, and cloud
+        infrastructure.
         <skill-sub-section />
       </div>
 

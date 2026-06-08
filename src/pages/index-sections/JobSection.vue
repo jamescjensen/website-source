@@ -72,9 +72,45 @@ type Job = {
 
 const jobs: Job[] = [
   {
+    company: 'Glassdome',
+    title: 'Backend Software Engineer',
+    dateRange: 'Oct 2024 - Present',
+    description:
+      "Seoul, South Korea. Glassdome's product focuses on intelligent monitoring for factories and track their product carbon footprints. I serve on the team as a developer and scrum master, participating in the technical design and implementation for several major initiatives.",
+    skills: [
+      'Go',
+      'AWS',
+      'Kubernetes',
+      'Protobuf',
+      'Postgres',
+      'TimescaleDB',
+      'Clickhouse',
+    ],
+    projects: [
+      {
+        title: 'Catena-X PCF sharing',
+        description:
+          'Sharing product carbon footprints using the Catena-X model, with the vendor Cofinity-X. Implementation lead to Glassdome receiving certification by Cofinity-X and placement on their marketplace.',
+        skills: ['Go', 'AWS', 'Kubernetes'],
+        externalLinks: [
+          {
+            url: 'https://glassdome.com/news/glassdome-earns-catena-x-certification-and-cofinity-x-marketplace-registration-for-its-carbon-footprint-solution/',
+            text: 'Glassdome Earns Catena-X Certification and Cofinity-X Marketplace Registration for Its Carbon Footprint Solution',
+          },
+        ],
+      },
+      {
+        title: 'Emission factor dataset upload',
+        description:
+          'Reduced manual workload for our consultants by implementing upload for calculation factor datasets, rather than a bespoke manual update whenever a new version was released.',
+        skills: ['Go', 'AWS', 'Kubernetes'],
+      },
+    ],
+  },
+  {
     company: 'MXN Technology',
     title: 'Software Engineer',
-    dateRange: 'Sep 2021 - Present',
+    dateRange: 'Sep 2021 - Sep 2024',
     description:
       'Seoul, South Korea. MXN is an international logistics company, and I am an engineer on an R&D focused team, testing out technologies and projects new to the company. Lead effort to automate build pipelines; both within my direct team and helping other development teams. Worked with team to design and harden development practices towards a process that encouraged full participation of team members.',
     skills: [
