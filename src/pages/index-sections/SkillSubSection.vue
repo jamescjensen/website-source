@@ -3,28 +3,28 @@
     <template #title>
       <span class="text-title-subsection"> Skills </span>
     </template>
-    <div class="row q-col-gutter-sm">
-      <div class="col-12">
+
+    <div class="content-stack">
+      <div>
         <div class="text-title-subsubsection">
           {{ 'Recent' }}
         </div>
-        <div class="row q-col-gutter-sm">
+
+        <div class="skill-list">
           <template v-for="skill in recentSkills" :key="skill">
-            <div class="col-auto">
-              <q-chip class="skill-chip" dense :label="skill" />
-            </div>
+            <v-chip class="skill-chip" density="compact" size="small">{{ skill }}</v-chip>
           </template>
         </div>
       </div>
-      <div class="col-12">
+
+      <div>
         <div class="text-title-subsubsection">
           {{ 'Previously Used' }}
         </div>
-        <div class="row q-col-gutter-sm">
+
+        <div class="skill-list">
           <template v-for="skill in previouslyUsed" :key="skill">
-            <div class="col-auto">
-              <q-chip class="skill-chip" dense :label="skill" />
-            </div>
+            <v-chip class="skill-chip" density="compact" size="small">{{ skill }}</v-chip>
           </template>
         </div>
       </div>
@@ -33,36 +33,36 @@
 </template>
 
 <script setup lang="ts">
-import ExpandableArea from 'components/ExpandableArea.vue';
+  import ExpandableArea from '@/components/ExpandableArea.vue'
 
-const recentSkills = [
-  'Go',
-  'AWS',
-  'Kubernetes',
-  'Protobuf',
-  'Postgres',
-  'TimescaleDB',
-  'JavaScript',
-  'TypeScript',
-  'Node.js',
-];
+  const recentSkills = [
+    'Go',
+    'AWS',
+    'Kubernetes',
+    'Protobuf',
+    'Postgres',
+    'TimescaleDB',
+    'JavaScript',
+    'TypeScript',
+    'Node.js',
+  ]
 
-const previouslyUsed = [
-  'HTML',
-  'CSS',
-  'Google Cloud',
-  'Quasar',
-  'Vue',
-  'React',
-  'Perl',
-  'C',
-  'C++',
-  'C#',
-  'Unity',
-  'Flutter / Dart',
-  'Capacitor',
-  'PHP',
-  'Laravel',
-  'Qt',
-];
+  const previouslyUsed = [
+    'HTML',
+    'CSS',
+    'Google Cloud',
+    'Quasar',
+    'Vue',
+    'React',
+    'Perl',
+    'C',
+    'C++',
+    'C#',
+    'Unity',
+    'Flutter / Dart',
+    'Capacitor',
+    'PHP',
+    'Laravel',
+    'Qt',
+  ]
 </script>

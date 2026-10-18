@@ -3,27 +3,40 @@
     <template #title>
       <span class="text-title"> Introduction </span>
     </template>
-    <div class="row q-col-gutter-sm items-center justify-between">
-      <div class="col-xs-12 col-sm-9">
-        Developer with ten years of professional experience building
-        cloud-native applications, distributed systems, and e-commerce
-        platforms; delivering high-scale services on AWS and GCP. Experienced
-        leading cross-functional teams through architecture design, roadmap
-        planning, and delivery. Specialized in Go, Node.js, and cloud
-        infrastructure.
+
+    <div class="introduction-grid">
+      <div>
+        <p>
+          Software engineer with 10 years of experience designing cloud-native
+          applications and distributed backend systems. Experienced in system
+          architecture, performance optimization, production infrastructure, and
+          modernizing complex services across industrial SaaS, healthcare, and
+          e-commerce industries. Specialized in Go, TypeScript/Node.js,
+          Kubernetes, and AWS/GCP, with experience managing engineering teams.
+        </p>
+
+        <p>US citizen based in South Korea (F-2 visa; no sponsorship required).</p>
+
         <skill-sub-section />
       </div>
 
-      <div class="col-xs-12 col-sm-3 row justify-center">
-        <q-img class="image" fit="cover" no-spinner src="~assets/me.jpeg" />
+      <div class="portrait-container">
+        <v-img
+          alt="James (Jack) Jensen"
+          :aspect-ratio="1"
+          class="image"
+          cover
+          :src="portrait"
+        />
       </div>
     </div>
   </expandable-area>
 </template>
 
 <script setup lang="ts">
-import SkillSubSection from './SkillSubSection.vue';
-import ExpandableArea from 'components/ExpandableArea.vue';
+  import portrait from '@/assets/me.jpeg'
+  import ExpandableArea from '@/components/ExpandableArea.vue'
+  import SkillSubSection from './SkillSubSection.vue'
 </script>
 
 <style scoped lang="scss">
@@ -32,5 +45,6 @@ import ExpandableArea from 'components/ExpandableArea.vue';
   flex-shrink: 0;
   max-height: 300px;
   max-width: 300px;
+  width: 100%;
 }
 </style>

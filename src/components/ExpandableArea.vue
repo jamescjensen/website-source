@@ -1,38 +1,30 @@
 <template>
-  <div class="column" v-bind="$attrs">
-    <div @click="toggleExpansion">
-      <span>
-        <slot name="title" />
-      </span>
+  <section class="expandable-area">
+    <button
+      :aria-controls="contentId"
+      :aria-expanded="expanded"
+      class="expansion-trigger"
+      type="button"
+      @click="expanded = !expanded"
+    >
+      <span><slot name="title" /></span>
+      <v-icon :icon="expanded ? 'mdi-chevron-down' : 'mdi-chevron-right'" :size="iconSize" />
+    </button>
 
-      <span>
-        <q-icon
-          :size="iconSize"
-          :name="expanded ? 'expand_more' : 'chevron_right'"
-        />
-      </span>
-    </div>
-
-    <div v-if="expanded">
+    <div v-if="expanded" :id="contentId" class="expansion-content">
       <slot />
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+  import { ref, useId } from 'vue'
 
-const props = withDefaults(
-  defineProps<{
-    iconSize?: string;
-    initialExpanded?: boolean;
-  }>(),
-  { iconSize: '14px', initialExpanded: true }
-);
+  const props = withDefaults(defineProps<{
+    iconSize?: string
+    initialExpanded?: boolean
+  }>(), { iconSize: '14px', initialExpanded: true })
 
-const expanded = ref<boolean>(props.initialExpanded);
-
-function toggleExpansion() {
-  expanded.value = !expanded.value;
-}
+  const expanded = ref(props.initialExpanded)
+  const contentId = useId()
 </script>

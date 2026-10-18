@@ -1,45 +1,48 @@
 <template>
-  <q-card class="q-mt-sm">
-    <q-card-section>
+  <v-card class="project-card" :elevation="2">
+    <v-card-text>
       <div class="text-title-subsubsection">
         {{ project.title }}
       </div>
-      <div class="row q-col-gutter-sm">
-        <template v-for="skill in project.skills" :key="skill">
-          <div class="col-auto">
-            <q-chip class="skill-chip" dense :label="skill" />
-          </div>
-        </template>
-        <div v-if="project.imageUrl" class="col-12">
-          <q-img :src="project.imageUrl" />
+
+      <div class="content-stack">
+        <div class="skill-list">
+          <template v-for="skill in project.skills" :key="skill">
+            <v-chip class="skill-chip" density="compact" size="small">{{ skill }}</v-chip>
+          </template>
         </div>
-        <div class="col-12">
+
+        <div v-if="project.imageUrl">
+          <v-img :alt="project.title" :src="project.imageUrl" />
+        </div>
+
+        <div>
           {{ project.description }}
         </div>
 
         <template v-for="link in project.externalLinks" :key="link.url">
-          <div class="col-auto">
+          <div>
             <a :href="link.url">{{ link.text }}</a>
           </div>
         </template>
       </div>
-    </q-card-section>
-  </q-card>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script setup lang="ts">
-type ExternalLink = {
-  text: string;
-  url: string;
-};
+  type ExternalLink = {
+    text: string
+    url: string
+  }
 
-export type Project = {
-  title: string;
-  description: string;
-  imageUrl?: string;
-  skills: string[];
-  externalLinks?: ExternalLink[];
-};
+  export type Project = {
+    title: string
+    description: string
+    imageUrl?: string
+    skills: string[]
+    externalLinks?: ExternalLink[]
+  }
 
-defineProps<{ project: Project }>();
+  defineProps<{ project: Project }>()
 </script>
