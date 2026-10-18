@@ -38,19 +38,31 @@
             </div>
 
             <template v-if="job.projects.length > 0">
-              <expandable-area class="projects-area" :initial-expanded="false">
+              <expandable-area
+                class="projects-area"
+                :initial-expanded="false"
+              >
                 <template #title> Projects </template>
 
-                <masonry-grid>
-                  <template
-                    v-for="project in job.projects"
-                    :key="project.title"
+                <div class="content-stack">
+                  <masonry-grid
+                    v-for="group in projectGroups(
+                      job.projects,
+                    )"
+                    :key="group.priority"
                   >
-                    <div>
-                      <project-card :project="project" />
-                    </div>
-                  </template>
-                </masonry-grid>
+                    <template
+                      v-for="project in group.projects"
+                      :key="project.title"
+                    >
+                      <div>
+                        <project-card
+                          :project="project"
+                        />
+                      </div>
+                    </template>
+                  </masonry-grid>
+                </div>
               </expandable-area>
             </template>
           </div>
@@ -79,6 +91,19 @@
     projects: Project[]
   }
 
+  function projectGroups (projects: Project[]) {
+    return [
+      {
+        priority: 'high',
+        projects: projects.filter(project => project.highPriority),
+      },
+      {
+        priority: 'low',
+        projects: projects.filter(project => !project.highPriority),
+      },
+    ].filter(group => group.projects.length > 0)
+  }
+
   const jobs: Job[] = [
     {
       company: 'Glassdome, Inc.',
@@ -97,9 +122,9 @@
       ],
       projects: [
         {
-          title: 'Agathon',
+          title: 'Customer Project',
           description:
-            'Coordinated delivery of a new customer’s 27-point requirements list, clarifying requirements and prioritizing work with the customer success and solution deployment team. Trained a newly full-stack engineer and the new CTO on the backend codebase. Implemented electronic signatures with token issuance and validation, company-level opt-in, and group-level signing permissions, disabled by default for other customers. Also implemented tag grouping, alarm comments, and historian refresh configuration.',
+            'Coordinated delivery of customer requirements, collaborating with customer success and deployment teams to prioritize implementation. Implemented electronic signatures with token validation and configurable company- and group-level permissions.',
           skills: ['Go', 'AWS', 'Kubernetes'],
         },
         {
@@ -111,8 +136,8 @@
         {
           title: 'Cofinity-X Data Space Accelerator Program',
           description:
-            'Supported customer onboarding and product carbon footprint (PCF) interoperability for a German government-funded program promoting Catena-X adoption through Cofinity-X. Updated Glassdome’s integration with connector compatibility and environment configuration developed for Carbonnara, and implemented asynchronous PCF requests. Trained global business development staff on data-sharing workflows and supported onboarding and exchange validation for KGM, Shinsung Autotech, and New Material Industry, whose program procedures were confirmed complete.',
-          skills: ['Go', 'Cofinity-X', 'Catena-X'],
+            'Supported PCF interoperability and customer onboarding through Cofinity-X\'s Data Space Accelerator program. Updated Cofinity-X connector compatibility and implemented asynchronous PCF requests. Trained business development team on data-sharing workflows and supported customer exchange validation.',
+          skills: ['Go'],
           externalLinks: [
             {
               url: 'https://userguide.cofinity-x.com/en/articles/680628-program-overview',
@@ -122,9 +147,10 @@
         },
         {
           title: 'Carbonnara',
+          highPriority: true,
           description:
-            'Designed the architecture and helped plan a new product rebuilding Glassdome’s PCF functionality, serving as Scrum Master and later assuming engineering leadership. Completed the initial core rebuild in approximately three months against a six-month target, with testing and production-readiness work continuing afterward. Maintained the roadmap and led cross-functional planning with consulting, product, design, and sales. Built an MCP server for secure AI-client integration, CBAM and EPD frameworks, Cofinity-X data sharing, and spreadsheet-based LCA dataset ingestion with AI-assisted schema mapping. Also implemented live manufacturing data imports, site and unit-process management, report templates, and PDF generation.',
-          skills: ['Go', 'AWS', 'Kubernetes', 'MCP', 'Cofinity-X', 'LCA', 'CBAM', 'EPD'],
+            'Co-designed the architecture of a new carbon-footprint product, later assuming engineering leadership. Completed the initial core rebuild in three months against a six-month target. Led cross-functional planning with PCF consultants, product, and design. Built an MCP server for secure AI client integration, and spreadsheet-based LCA dataset ingestion with AI-assisted schema mapping.',
+          skills: ['Go', 'AWS', 'Kubernetes', 'MCP'],
         },
         {
           title: 'Customer Pipelines',
@@ -139,34 +165,37 @@
           skills: ['Go', 'AWS', 'Kubernetes'],
         },
         {
-          title: 'Time-Series Database Migration',
+          title: 'Timeseries Database Migration',
+          highPriority: true,
           description:
-            'Contributed to a phased ClickHouse-to-TimescaleDB migration covering OEE, shift history, PCF, and live manufacturing metrics, culminating in the shutdown of ClickHouse. Led the shift-history and manufacturing time-series migrations and contributed to the other phases. Reduced selected expensive queries from approximately 12 seconds to under one second and monthly database spend by approximately $2,000.',
+            'Led the shift history and manufacturing timeseries phases of a ClickHouse to TimescaleDB migration. Reduced the most expensive query times from approximately 12 seconds to under 1 second and monthly database costs by approximately $2,000.',
           skills: ['Go', 'ClickHouse', 'PostgreSQL', 'TimescaleDB'],
         },
         {
           title: 'Waypoint APIs',
+          highPriority: true,
           description:
-            'Built customer-facing APIs authenticated with API keys for PCF and tag-data ingestion, tag discovery, and historical data retrieval, with asynchronous ingestion queued through Redpanda. Designed batch-operation logic and implemented PCF flow and activity-data APIs, tag-data ingestion, and federation access. Later implemented tag discovery and retrieval of latest, raw, and aggregated datapoints, delivering outbound APIs to production.',
+            'Designed and implemented API key authenticated customer APIs for carbon-footprint and manufacturing-data ingestion, tag discovery, and historical retrieval. Used Redpanda for asynchronous ingestion processing and implemented latest, raw, and aggregated timeseries queries.',
           skills: ['Go', 'Redpanda', 'API Design'],
         },
         {
           title: 'QuantumSurf Interoperability',
           description:
             'Led interoperability with QuantumSurf’s PCF data exchange. Authored technical and API specifications and worked directly with QuantumSurf engineering to deliver the integration.',
-          skills: ['Go', 'API Design', 'PCF Interoperability'],
+          skills: ['Go', 'API Design'],
         },
         {
           title: 'OEE',
           description:
-            'Helped build Overall Equipment Effectiveness tracking, including shift-based downtime, performance, and quality metrics. Led the downtime portion, normalized performance calculations using converted productive time, and moved Pareto-chart calculations to the backend to reduce client-side processing and improve reporting over large time ranges.',
-          skills: ['Go', 'Time-Series Data', 'OEE'],
+            'Developed backend functionality for Overall Equipment Effectiveness tracking, leading downtime implementation and moving Pareto chart calculations to the backend to improve reporting across large time ranges.',
+          skills: ['Go', 'TimescaleDB'],
         },
         {
           title: 'Cofinity-X / Catena-X Interoperability',
+          highPriority: true,
           description:
             'Led technical design and implementation of interoperability between Glassdome’s PCF product and Cofinity-X’s data exchange. Built multi-step PCF exchange workflows using a Redpanda-backed saga to coordinate external calls. Worked directly with Cofinity-X engineers to resolve API ambiguities and improve integration documentation.',
-          skills: ['Go', 'Redpanda', 'Cofinity-X', 'Catena-X'],
+          skills: ['Go', 'Redpanda'],
         },
         {
           title: 'Zitadel Migration',
@@ -178,25 +207,25 @@
           title: 'ACLs',
           description:
             'Led the design and implementation of access-control lists using SpiceDB, ensuring permissions propagated correctly without disrupting existing customers.',
-          skills: ['Go', 'SpiceDB', 'Access Control'],
+          skills: ['Go', 'SpiceDB'],
         },
         {
-          title: 'PCF Emission-Activity Upload',
+          title: 'PCF Emission Activity Upload',
           description:
-            'Built the original manual-ingestion workflow for customer PCF activity data. Implemented CSV/XLSX ingestion with custom schemas mapping source columns, units, categories, and directions. Added validation, row-level error reporting, upload templates, and upload history, and processed validated files into the pipeline for PCF calculations.',
-          skills: ['Go', 'CSV / XLSX', 'Data Ingestion'],
+            'Built a customer PCF activity data ingestion workflow, supporting CSV/XLSX uploads, configurable schema mappings, row-level validation errors, and integration with PCF calculation pipelines.',
+          skills: ['Go'],
         },
         {
           title: 'ecoinvent Database Upload',
           description:
-            'Replaced a fixed calculation-factor dataset stored in a large static database migration with spreadsheet uploads, allowing new ecoinvent versions to be imported without code changes or migrations. Implemented company calculation-factor collections with a configured limit of 700 factors per company to support licensing requirements. Owned these features and adapted them to structural changes in later ecoinvent versions.',
-          skills: ['Go', 'ecoinvent', 'Data Ingestion'],
+            'Replaced a static calculation factor dataset with spreadsheet-based imports, allowing new ecoinvent versions without code changes or database migrations. Maintained compatibility with subsequent dataset versions.',
+          skills: ['Go', 'Data Ingestion'],
         },
         {
           title: 'Siemens SiGREEN Integration',
           description:
             'Owned technical design and implementation of PCF interoperability between Glassdome and Siemens SiGREEN. Established the technical requirements and delivered the integration.',
-          skills: ['Go', 'SiGREEN', 'PCF Interoperability'],
+          skills: ['Go'],
         },
       ],
     },
@@ -219,8 +248,9 @@
       projects: [
         {
           title: 'yless',
+          highPriority: true,
           description:
-            'Led development of a beauty e-commerce app with a Dart/Flutter client and TypeScript backend deployed on AWS. Established the app foundations and trained remote contractors to take over client development, while designing, developing, and owning the server infrastructure and codebase. Designed the system to support 300,000 daily users across Korea and the US.',
+            'Led development of a Flutter-based beauty e-commerce app with a TypeScript backend on AWS. Established application foundations, onboarded remote contractors, and owned backend services and infrastructure designed for 300,000 daily users across Korea and the US.',
           skills: ['Flutter / Dart', 'TypeScript', 'AWS'],
         },
         {
@@ -240,7 +270,7 @@
         {
           title: 'MintCode',
           description:
-            'Led development of an NFT provenance app with a Dart/Flutter client and TypeScript backend deployed on Google Cloud. The NFT infrastructure was designed externally; led development of the rest of the project.',
+            'Led development of an NFT provenance app with a Dart/Flutter client and TypeScript backend deployed on Google Cloud. Presented at NFT.NYC in 2023.',
           skills: [
             'JavaScript',
             'TypeScript',
@@ -263,15 +293,23 @@
         },
         {
           title: 'MintFulfillment Warehouse Management System',
+          highPriority: true,
           description:
             'Designed a warehouse management webapp and server from the ground up, enabling workers to manage inventory and fulfill orders. Used TypeScript on both frontend and backend, with a Vue/Quasar/Capacitor client.',
           skills: ['TypeScript', 'Node.js', 'Vue', 'Quasar', 'Capacitor'],
         },
         {
           title: 'MintFulfillment Order Management System',
+          highPriority: true,
           description:
             'Built an order management webapp and server connecting to Shopify, Naver SmartStore, and Coupang to import orders for warehouse fulfillment. Upgraded from Vue 2 to Vue 3 and converted the entire codebase from JavaScript to TypeScript.',
-          skills: ['JavaScript', 'TypeScript', 'Node.js', 'Vue', 'Quasar'],
+          skills: [
+            'JavaScript',
+            'TypeScript',
+            'Node.js',
+            'Vue',
+            'Quasar',
+          ],
         },
       ],
     },
@@ -298,8 +336,9 @@
         },
         {
           title: 'NewSCRIPT',
+          highPriority: true,
           description:
-            'Contributed to the design and implementation of the team’s upgrade to Surescripts’ new electronic-prescribing standard, rewriting substantial parts of the prescription workflow and replacing error-prone legacy logic. The broader ePrescribing team’s work was recognized when athenahealth achieved the highest accuracy score in e-prescribing quality in the 2020 Surescripts White Coat Award.',
+            'Contributed to the design and implementation of Surescripts\'s NewSCRIPT standard, rewriting substantial portions of legacy e-prescribing workflows and replacing error-prone logic. The broader ePrescribing team was recognized for achieving the highest prescribing accuracy in the 2020 Surescripts White Coat Award.',
           skills: ['JavaScript', 'Perl'],
           externalLinks: [
             {
@@ -316,14 +355,16 @@
         },
         {
           title: 'Prescription Drug Monitoring Program',
+          highPriority: true,
           description:
-            'Integrated state prescription-monitoring programs into the prescribing workflow using a Node.js microservice and React frontend, allowing doctors to review controlled-substance prescription histories without visiting separate state websites. Reduced lookup time from 5–7 minutes to under 10 seconds and supported approximately one million requests per day. Served as a long-term technical owner, trained new developers, and worked directly with doctors, vendors, and developers operating state systems.',
+            'Integrated state prescription-monitoring systems into clinical workflows using Node.js and React, reducing lookup time from 5–7 minutes to under 10 seconds. Served as long-term technical owner of the integration, supporting approximately 1 million requests per day and collaborating directly with clinicians and external partners.',
           skills: ['TypeScript', 'Node.js', 'React', 'AWS'],
         },
         {
           title: 'Real-Time Benefit Check',
+          highPriority: true,
           description:
-            'Helped extract real-time prescription-benefit checking from the Perl monolith into a Node.js microservice, among the company’s first production microservices. Displayed drug prices and lower-cost alternatives within the prescribing workflow and supported approximately six million requests per day. Coordinated integrations with vendors selected according to patient insurance and helped establish AWS deployment and microservice practices.',
+            'Helped migrate real time prescription benefit checking from a Perl monolith into one of athenahealth\'s early production Node.js microservices. Supported approximately 6 million requests daily, integrating insurance-dependent vendors to provide drug pricing and lower-cost alternatives.',
           skills: ['JavaScript', 'TypeScript', 'Node.js', 'Perl', 'AWS'],
           externalLinks: [
             {
